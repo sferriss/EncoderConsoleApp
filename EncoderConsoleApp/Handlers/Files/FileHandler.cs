@@ -4,8 +4,6 @@ namespace EncoderConsoleApp.Handlers.Files;
 
 public class FileHandler : IFileHandler
 {
-    private string? _bitsStringControle;
-
     public byte[] Read(string path, OperationType type)
     {
         var data = File.ReadAllBytes(path);
@@ -22,13 +20,9 @@ public class FileHandler : IFileHandler
 
     public void Write(byte[] bytes, OperationType type)
     {
-        if (OperationType.Decode == type)
-        {
-            File.WriteAllBytes(@$"..\..\..\ReturnedFiles\Decoded\decode.txt", bytes);
-        }
-        else
-        {
-            File.WriteAllBytes(@"..\..\..\ReturnedFiles\Encoded\encoded.code", bytes);
-        }
+        File.WriteAllBytes(
+            OperationType.Decode == type
+                ? @$"..\..\..\ReturnedFiles\Decoded\decode.txt"
+                : @"..\..\..\ReturnedFiles\Encoded\encoded.code", bytes);
     }
 }

@@ -38,8 +38,9 @@ public class RunProject
                 
                 option = CallPathMenu();
                 var file = _fileHandler.Read(option, OperationType.Encode);
+                
+                Console.Write("\nCodificando... \n");
                 decoder.Encode(file, divider);
-                Console.Write("\nCodificado... \n");
             }
             else if(option == "2")
             {
@@ -51,8 +52,9 @@ public class RunProject
                 divider = header[1];
 
                 var decoder = _factory.Build(GetTypeByValue(type));
-                decoder.Decode(file, divider);
+                
                 Console.Write("\nDecodificando... \n");
+                decoder.Decode(file, divider);
             }
             else if(option == "5")
             {

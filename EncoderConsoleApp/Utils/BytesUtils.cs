@@ -52,6 +52,7 @@ public static class BytesUtils
     
     private static byte Sum (byte value)
     {
+        var te = (byte)(value + 1);
         return (byte)(value + 1);
     }
     
