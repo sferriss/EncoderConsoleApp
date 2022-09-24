@@ -12,9 +12,4 @@
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0-rc.1.22426.10" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="ReturnedFiles\Decoded" />
-      <Folder Include="ReturnedFiles\Encoded" />
-    </ItemGroup>
-
 </Project>

@@ -18,13 +18,11 @@ public class FibonacciEncoder : IFibonacciEncoder
     {
         var fibonacci = GenerateFibonacciSequence();
         var bytesWithSum = BytesUtils.AddOneInEachByte(bytes);
+
+        var bitsList = new List<string>();
+        BuildHeader(bitsList, 0);
         
-        var strList = new List<string>();
-        BuildHeader(strList, 0);
-        
-        var bytesList = new List<string>();
-        
-        var fullStr = "";
+        var codeword = "";
 
         foreach (var t in bytesWithSum)
         {
@@ -46,25 +44,21 @@ public class FibonacciEncoder : IFibonacciEncoder
             }
             
             var strReverse = new string(str.Reverse().ToArray());
-            fullStr += strReverse;
+            codeword += strReverse;
 
-            if (fullStr.Length < 8) continue;
+            if (codeword.Length < 8) continue;
             
-            bytesList.Add(fullStr[..8]);
-            fullStr = fullStr[8..];
+            bitsList.Add(codeword[..8]);
+            codeword = codeword[8..];
         }
 
-        var fullList = StringUtils
-            .Split8BitsList(strList)
-            .Select(x => Convert.ToByte(x, 2)).ToList();
-            
-        var list = bytesList
+        bitsList.AddRange(StringUtils.Split8BitsList(codeword));
+
+        var byteArray = bitsList
             .Select(x => Convert.ToByte(x, 2))
-            .ToList();
-        
-        fullList.AddRange(list);
-        
-        _fileHandler.Write(fullList.ToArray(), OperationType.Encode);
+            .ToArray();
+
+        _fileHandler.Write(byteArray, OperationType.Encode);
     }
 
     public void Decode(byte[] bytes, int divisor)
@@ -85,9 +79,9 @@ public class FibonacciEncoder : IFibonacciEncoder
         {
             var arrayChar = item.ToArray();
 
-            for (var i = 0; i < arrayChar.Length; i++)
+            foreach (var t in arrayChar)
             {
-                if (arrayChar[i] == '1' && arrayChar[i] == predecessor && count >= 5)
+                if (t == '1' && t == predecessor && count >= 5)
                 {
                     var calculatedByte = CompareWithFibonacciSequence(fibonacci, arrayInt.ToArray());
                     bytesList.Add(calculatedByte);
@@ -97,8 +91,8 @@ public class FibonacciEncoder : IFibonacciEncoder
                 }
                 else
                 {
-                    arrayInt.Add(int.Parse(arrayChar[i].ToString()));
-                    predecessor = arrayChar[i];
+                    arrayInt.Add(int.Parse(t.ToString()));
+                    predecessor = t;
                     count++;
                 }
             }
@@ -119,11 +113,11 @@ public class FibonacciEncoder : IFibonacciEncoder
 
     private static int[] GenerateFibonacciSequence()
     {
-        var fibonacciArray = new int[10];
+        var fibonacciArray = new int[20];
         fibonacciArray[0] = 1;
         fibonacciArray[1] = 2;
         
-        for (int i = 2; i < fibonacciArray.Length; i++) {
+        for (var i = 2; i < fibonacciArray.Length; i++) {
             fibonacciArray[i] = fibonacciArray[i - 1] + fibonacciArray[i - 2];
         }
         return fibonacciArray.Reverse().ToArray();
