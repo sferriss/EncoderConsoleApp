@@ -81,6 +81,11 @@ public class GolombEncoder : IGolombEncoder
                     codeword += arrayChar[i];
                 }
 
+                if (!foundStopBit)
+                {
+                    prefixCounter++;   
+                }
+                
                 if (foundStopBit && i == arrayChar.Length - 1)
                 {
                     var byteValue = CountValue(prefixCounter, codeword, divisor);
@@ -89,11 +94,7 @@ public class GolombEncoder : IGolombEncoder
                     foundStopBit = false;
                     prefixCounter = 0;
                     codeword = "";
-                }
-
-                if (!foundStopBit)
-                {
-                    prefixCounter++;   
+                    break;
                 }
             }
         }
@@ -124,7 +125,7 @@ public class GolombEncoder : IGolombEncoder
     {
         var suffixValue = Convert.ToInt32(suffix, 2);
 
-        var total = (divider * prefixCount) - suffixValue;
+        var total = (divider * prefixCount) + suffixValue;
 
         return (byte)total;
     }
