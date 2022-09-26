@@ -31,8 +31,11 @@ public class StringUtils
             strControl = strControl[8..];
         }
 
-        var fillWithZero = strControl.PadRight(8, '0');
-        newList.Add(fillWithZero);
+        if (strControl.Length is < 8 and >= 1)
+        {
+            var fillWithZero = strControl.PadRight(8, '0');
+            newList.Add(fillWithZero);
+        }
 
         return newList;
     }
