@@ -94,7 +94,6 @@ public class GolombEncoder : IGolombEncoder
                     foundStopBit = false;
                     prefixCounter = 0;
                     codeword = "";
-                    break;
                 }
             }
         }
