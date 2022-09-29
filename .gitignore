@@ -20,6 +20,12 @@ obj/
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+/.idea/.idea.EncoderConsoleApp/.idea/encodings.xml
+/.idea/.idea.EncoderConsoleApp/.idea/indexLayout.xml
+/.idea/.idea.EncoderConsoleApp/.idea/vcs.xml
+/.idea/.idea.EncoderConsoleApp/.idea/projectSettingsUpdater.xml
+/EncoderConsoleApp/ReturnedFiles/Decoded/decode.txt
+/EncoderConsoleApp/ReturnedFiles/Encoded/encoded.code
 
 # AWS User-specific
 .idea/**/aws.xml
