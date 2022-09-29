@@ -20,8 +20,8 @@ public class EliasGammaEncoder : IEliasGammaEncoder
         var potencyValues = CalculatePotency();
         var bytesAddedOne = BytesUtils.AddOneInEachByte(bytes);
 
-        var bytesList = new List<string>();
-        BuildHeader(bytesList, 0);
+        var bitsList = new List<string>();
+        BuildHeader(bitsList, 0);
 
         var codeword = "";
 
@@ -36,12 +36,12 @@ public class EliasGammaEncoder : IEliasGammaEncoder
             
             if (codeword.Length < 8) continue;
             
-            bytesList.Add(codeword[..8]);
+            bitsList.Add(codeword[..8]);
             codeword = codeword[8..];
         }
-        bytesList.AddRange(StringUtils.Split8BitsList(codeword));
+        bitsList.AddRange(StringUtils.Split8BitsList(codeword));
         
-        var byteArray = bytesList
+        var byteArray = bitsList
             .Select(x => Convert.ToByte(x, 2))
             .ToArray();
 
