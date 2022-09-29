@@ -50,7 +50,7 @@ public class DeltaEncoder : IDeltaEncoder
             }
             else
             {
-                codeword += '0';
+                codeword += string.Empty.PadLeft(8, '0');
             }
             
             if (codeword.Length < 8) continue;
@@ -115,9 +115,13 @@ public class DeltaEncoder : IDeltaEncoder
                         codeword += c;
                         count++;
                         break;
+                    case false:
+                        codeword += c;
+                        count++;
+                        break;
                 }
 
-                if (!foundChange || count != 8) continue;
+                if (count != 8) continue;
                 
                 var convertedByte = GetConvertedByte(codeword, bytesList, isPositive);
                 bytesList.Add(convertedByte);

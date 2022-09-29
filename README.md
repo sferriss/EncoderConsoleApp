@@ -14,3 +14,4 @@
 
 ### Algumas considerações:
 - Os arquivo codificados e decodificados ficam salvos na pasta ReturnedFiles
+- Alguns algoritmos demoram um pouco para fazer a codificação
