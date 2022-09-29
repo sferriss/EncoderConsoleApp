@@ -8,3 +8,5 @@ public enum EncoderType
     Unary,
     Delta
 }
+
+//teste de branch
