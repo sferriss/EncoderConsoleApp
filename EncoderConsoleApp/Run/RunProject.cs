@@ -1,6 +1,7 @@
 ﻿using EncoderConsoleApp.Enums;
 using EncoderConsoleApp.Factories;
 using EncoderConsoleApp.Handlers.Files;
+using EncoderConsoleApp.TratamentoRuido;
 
 namespace EncoderConsoleApp.Run;
 
@@ -43,6 +44,7 @@ public class RunProject
                     
                     Console.WriteLine("\nCodificando... \n");
                     decoder.Encode(file, divider);
+
                     Console.WriteLine(@"Salvo em: EncoderConsoleApp\EncoderConsoleApp\ReturnedFiles\Encoded\encoded.code");
                     break;
                 }
