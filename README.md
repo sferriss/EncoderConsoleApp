@@ -1,4 +1,4 @@
-# Trabalho para a disciplina de teoria da informação
+# Trabalho para a disciplina de Teoria da Informação GA
 
 ### Para rodar é necessário:
 - Instalar [Dotnet 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0 "Dotnet 6")
